@@ -1,0 +1,21 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.pdf
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+Formatting-Instructions-LaTeX-2025.tex
+
+# Output directory (if used)
+out/
+
+# OS / editor noise
+.DS_Store
+.vscode/
