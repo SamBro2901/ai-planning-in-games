@@ -238,6 +238,13 @@ Taken together, these characteristics explain why planning techniques used in ga
 
 The characteristics of games discussed in the previous section motivate planning approaches that can balance adaptability with designer control. Hierarchical planning has emerged as a particularly influential paradigm in this context, as it allows reasoning at multiple levels of abstraction while constraining agent behavior in ways that remain compatible with game design requirements. This section examines Hierarchical Task Network (HTN) planning as a representative hierarchical approach, and situates it alongside related knowledge-driven planning methods that emphasize structure, reuse, and strategic control.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/section3.png}
+    \caption{Example Hierarchical Task Network for a guard NPC securing an objective in a game environment. High-level tasks are decomposed into alternative methods and primitive actions, with execution guided by preconditions and evolving world state.}
+    \label{fig:htn-network}
+\end{figure}
+
 \subsection{Hierarchical Task Networks}
 
 Hierarchical Task Network planning differs from classical goal-based planning by formulating problems in terms of tasks rather than explicit goal states. In an HTN, high-level tasks represent abstract objectives, which are decomposed into subtasks through the application of methods. This process continues until primitive actions are produced that can be executed directly in the game world. The hierarchy implicitly encodes control knowledge, guiding the planner toward behavior sequences that are meaningful within the domain.
