@@ -358,6 +358,13 @@ Together, these paradigms illustrate that planning in games cannot be addressed 
 
 The planning approaches discussed in the previous sections span a broad spectrum, ranging from symbolic and knowledge-driven methods to search-based and model-based techniques. These paradigms differ fundamentally in how knowledge is represented, how decisions are generated, and how control is distributed between designers and autonomous agents. In this section, we compare these approaches along dimensions that are particularly relevant to game AI and synthesize the trade-offs that emerge in practice.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/section6.png}
+    \caption{Conceptual comparison of planning paradigms in games along a spectrum from explicit, designer-controlled representations to flexible, autonomous decision making.}
+    \label{fig:htn-network}
+\end{figure}
+
 \subsection{Representation and Knowledge Encoding}
 
 Symbolic planning approaches rely on explicit representations of domain knowledge. HTN-based methods encode strategic intent and behavioral structure directly through hierarchical task decompositions, providing strong guidance over agent behavior and supporting long-term coordination. GOAP adopts a flatter symbolic representation in which actions and goals are specified independently, reducing structural complexity while retaining goal-directed reasoning. Case-based planning similarly relies on explicit knowledge, but emphasizes the reuse of stored experience rather than predefined hierarchies.
