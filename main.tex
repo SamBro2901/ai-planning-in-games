@@ -32,137 +32,25 @@
 \floatstyle{ruled}
 \newfloat{listing}{tb}{lst}{}
 \floatname{listing}{Listing}
-%
-% Keep the \pdfinfo as shown here. There's no need
-% for you to add the /Title and /Author tags.
 \pdfinfo{
 /TemplateVersion (2025.1)
 }
 
-% DISALLOWED PACKAGES
-% \usepackage{authblk} -- This package is specifically forbidden
-% \usepackage{balance} -- This package is specifically forbidden
-% \usepackage{color (if used in text)
-% \usepackage{CJK} -- This package is specifically forbidden
-% \usepackage{float} -- This package is specifically forbidden
-% \usepackage{flushend} -- This package is specifically forbidden
-% \usepackage{fontenc} -- This package is specifically forbidden
-% \usepackage{fullpage} -- This package is specifically forbidden
-% \usepackage{geometry} -- This package is specifically forbidden
-% \usepackage{grffile} -- This package is specifically forbidden
-% \usepackage{hyperref} -- This package is specifically forbidden
-% \usepackage{navigator} -- This package is specifically forbidden
-% (or any other package that embeds links such as navigator or hyperref)
-% \indentfirst} -- This package is specifically forbidden
-% \layout} -- This package is specifically forbidden
-% \multicol} -- This package is specifically forbidden
-% \nameref} -- This package is specifically forbidden
-% \usepackage{savetrees} -- This package is specifically forbidden
-% \usepackage{setspace} -- This package is specifically forbidden
-% \usepackage{stfloats} -- This package is specifically forbidden
-% \usepackage{tabu} -- This package is specifically forbidden
-% \usepackage{titlesec} -- This package is specifically forbidden
-% \usepackage{tocbibind} -- This package is specifically forbidden
-% \usepackage{ulem} -- This package is specifically forbidden
-% \usepackage{wrapfig} -- This package is specifically forbidden
-% DISALLOWED COMMANDS
-% \nocopyright -- Your paper will not be published if you use this command
-% \addtolength -- This command may not be used
-% \balance -- This command may not be used
-% \baselinestretch -- Your paper will not be published if you use this command
-% \clearpage -- No page breaks of any kind may be used for the final version of your paper
-% \columnsep -- This command may not be used
-% \newpage -- No page breaks of any kind may be used for the final version of your paper
-% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
-% \pagestyle -- This command may not be used
-% \tiny -- This is not an acceptable font size.
-% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
-% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+\setcounter{secnumdepth}{2}
 
-\setcounter{secnumdepth}{2} %May be changed to 1 or 2 if section numbers are desired.
-
-% The file aaai25.sty is the style file for AAAI Press
-% proceedings, working notes, and technical reports.
-%
-
-% Title
-
-% Your title must be in mixed case, not sentence case.
-% That means all verbs (including short verbs like be, is, using,and go),
-% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
-% articles, conjunctions, and prepositions are lower case unless they
-% directly follow a colon or long dash
 \title{Planning Approaches for Game Artificial Intelligence: A Survey}
 \author{
-    %Authors
-    % All authors must be in the same font size and format.
-    % Written by AAAI Press Staff\textsuperscript{\rm 1}\thanks{With help from the AAAI Publications Committee.}\\
-    % AAAI Style Contributions by Samanth Nanda Kumar,\\
-    % J. Scott Penberthy,
-    % George Ferguson,
-    % Hans Guesgen,
-    % Francisco Cruz\equalcontrib,
-    % Marc Pujol-Gonzalez\equalcontrib
     Samanth Nanda Kumar \\
     Universität Stuttgart \\
     \texttt{st193225@stud.uni-stuttgart.de}
 }
-% \affiliations{
-%     %Afiliations
-%     \textsuperscript{\rm 1}Association for the Advancement of Artificial Intelligence\\
-%     % If you have multiple authors and multiple affiliations
-%     % use superscripts in text and roman font to identify them.
-%     % For example,
-
-%     % Sunil Issar\textsuperscript{\rm 2}, 
-%     % J. Scott Penberthy\textsuperscript{\rm 3}, 
-%     % George Ferguson\textsuperscript{\rm 4},
-%     % Hans Guesgen\textsuperscript{\rm 5}
-%     % Note that the comma should be placed after the superscript
-
-%     1101 Pennsylvania Ave, NW Suite 300\\
-%     Washington, DC 20004 USA\\
-%     % email address must be in roman text type, not monospace or sans serif
-%     proceedings-questions@aaai.org
-% %
-% % See more examples next
-% }
-
-%Example, Single Author, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
 \iffalse
-\title{My Publication Title --- Single Author}
-\author {
-    Author Name
-}
-\affiliations{
-    Affiliation\\
-    Affiliation Line 2\\
-    name@example.com
-}
 \fi
 
 \iffalse
-%Example, Multiple Authors, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
-\title{My Publication Title --- Multiple Authors}
-\author {
-    % Authors
-    First Author Name\textsuperscript{\rm 1,\rm 2},
-    Second Author Name\textsuperscript{\rm 2},
-    Third Author Name\textsuperscript{\rm 1}
-}
-\affiliations {
-    % Affiliations
-    \textsuperscript{\rm 1}Affiliation 1\\
-    \textsuperscript{\rm 2}Affiliation 2\\
-    firstAuthor@affiliation1.com, secondAuthor@affilation2.com, thirdAuthor@affiliation1.com
-}
 \fi
 
-
-% REMOVE THIS: bibentry
-% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
 \usepackage{bibentry}
-% END REMOVE bibentry
 
 \begin{document}
 
@@ -199,6 +87,15 @@ More recently, large language models (LLMs) have introduced a qualitatively diff
 
 Taken together, these developments illustrate that planning in games now encompasses a broad spectrum of paradigms, ranging from symbolic and case-based methods to utility-driven, search-based, model-based, and generative approaches. This paper surveys these planning techniques with the goal of clarifying their underlying assumptions, trade-offs, and suitability for different game contexts, and of situating recent LLM-based agents within the broader landscape of game AI planning.
 
+To make these approaches comparable, we introduce a compact taxonomy that highlights the main axes along which game-planning methods differ.
+\paragraph{Taxonomy.}
+We structure the survey using three dimensions that recur across game-planning methods:
+\begin{itemize}
+    \item \textbf{Representation:} symbolic structures (operators/HTNs/cases), continuous scores (utilities), learned world models, or natural-language abstractions.
+    \item \textbf{Deliberation mechanism:} explicit plan synthesis/decomposition, action scoring/selection, or simulation-based lookahead (search).
+    \item \textbf{Design integration:} real-time feasibility, robustness under uncertainty, and the level of designer control and interpretability.
+\end{itemize}
+
 The remainder of this paper is organized as follows. Section~2 provides background on AI planning and discusses the characteristics of games that motivate specialized planning approaches. Section~3 examines hierarchical planning methods, with a focus on HTN-based representations and their use in encoding strategic knowledge. Section~4 reviews Goal-Oriented Action Planning and utility-based decision systems as practical planning frameworks adopted in commercial game development. Section~5 surveys search-based and model-based planning approaches, including Monte Carlo Tree Search, learned world models, and language-based planning agents. Section~6 presents a comparative analysis of these paradigms, highlighting key trade-offs and design considerations. Finally, Section~7 discusses open challenges and future research directions, and Section~8 concludes the paper.
 
 
@@ -206,17 +103,23 @@ The remainder of this paper is organized as follows. Section~2 provides backgrou
 
 This section situates planning-based approaches within the broader landscape of game AI. Rather than surveying planning techniques exhaustively, the focus is on clarifying how planning differs from other decision-making paradigms commonly used in games and on identifying the properties of game environments that shape how planning methods are designed and deployed.
 
-\subsection{Planning vs.\ Reactive, Utility-Based, and Learning-Based Game AI}
+\subsection{Decision-Making Paradigms in Game AI}
 
+\subsubsection{Reactive control}
 Game AI has historically been dominated by reactive control architectures, most notably finite state machines and behavior trees. These systems organize behavior procedurally through explicitly defined states, transitions, or control flows. Their appeal lies in their predictability, low computational overhead, and relative ease of debugging, which makes them well suited to production environments. As a result, reactive systems remain widely used in commercial games.
 
 As game complexity increases, however, purely reactive approaches exhibit clear limitations. Authoring and maintaining control logic becomes increasingly difficult as the number of states or behaviors grows, and agents often struggle to generalize beyond situations explicitly anticipated during design. These limitations have motivated interest in decision-making approaches that allow agents to reason more explicitly about goals, trade-offs, and future consequences.
 
+\subsubsection{Planning-based deliberation}
 Planning-based approaches occupy a distinct position within this spectrum. By representing goals, actions, and world state explicitly, planning systems enable agents to construct and revise sequences of actions at runtime rather than following fixed control structures. In games, planning is rarely performed as a single offline computation. Instead, planning and execution are typically interleaved, with partial plans generated, adapted, or discarded as the game state evolves. This emphasis on online and incremental planning reflects a key adaptation of classical planning ideas to interactive environments \cite{neufeld2017htn}.
 
+\subsubsection{Utility-based action selection}
 Utility-based decision systems provide an alternative form of deliberation that avoids explicit plan construction. Rather than generating action sequences, Utility AI evaluates available actions using continuous utility or need functions and selects the most desirable option at each decision point. This approach offers a compromise between reactivity and deliberation, supporting smooth adaptation at low computational cost, and has seen widespread adoption in simulation-heavy commercial games \cite{mark2009behavioral}.
 
-Learning-based methods have also become increasingly prominent in game AI, particularly in data-rich settings. Learning can complement planning by providing models, heuristics, or policies that support decision making, and recent work has blurred the boundary between planning and learning by incorporating learned models into planning processes. At the same time, learning-based approaches raise concerns related to predictability, interpretability, and designer control. In practice, planning is therefore commonly combined with reactive, utility-based, and learning-based components rather than used in isolation.
+\subsubsection{Learning-based methods}
+Learning-based methods have also become increasingly prominent in game AI, particularly in data-rich settings. Learning can complement planning by providing models, heuristics, or policies that support decision making, and recent work has blurred the boundary between planning and learning by incorporating learned models into planning processes. At the same time, learning-based approaches raise concerns related to predictability, interpretability, and designer control.
+
+In practice, planning is therefore commonly combined with reactive, utility-based, and learning-based components rather than used in isolation.
 
 \begin{figure}[t]
     \centering
@@ -343,14 +246,12 @@ Wang et al.\ introduced \emph{Voyager}, an embodied agent that uses an LLM to ge
 
 LLM-based planning differs fundamentally from symbolic and search-based approaches. By exploiting knowledge encoded in large pretrained models, these systems support expressive and adaptive behavior without predefined action schemas or exhaustive search. At the same time, they introduce challenges related to latency, cost, hallucination, and limited guarantees of correctness, and provide only indirect mechanisms for designer control.
 
-\subsection{Discussion: Symbolic, Search-Based, Model-Based, and Generative Planning}
-
-Symbolic, search-based, model-based, and language-driven planning approaches occupy distinct points in a shared design space. Symbolic planners emphasize structure, interpretability, and designer control, but require substantial authoring effort. Search-based planners emphasize scalability and generality, while model-based planners further reduce manual modeling through learned dynamics. LLM-based agents abstract planning to a semantic level, enabling expressive behavior at the cost of transparency and control.
-
-Together, these paradigms illustrate that contemporary planning in games is increasingly hybrid in nature, combining symbolic structure, search, learning, and language-based reasoning. Understanding their respective trade-offs provides essential context for the comparative analysis presented in the following section.
 
 
 \section{Comparative Analysis and Synthesis}
+Symbolic, search-based, model-based, and language-driven planning approaches occupy distinct points in a shared design space. Symbolic planners emphasize structure, interpretability, and designer control, but require substantial authoring effort. Search-based planners emphasize scalability and generality, while model-based planners further reduce manual modeling through learned dynamics. LLM-based agents abstract planning to a semantic level, enabling expressive behavior at the cost of transparency and control.
+
+Together, these paradigms illustrate that contemporary planning in games is increasingly hybrid in nature, combining symbolic structure, search, learning, and language-based reasoning. Understanding their respective trade-offs provides essential context for the comparative analysis presented in this section.
 
 The planning approaches surveyed in this paper span a broad spectrum, ranging from symbolic and knowledge-driven methods to search-based, model-based, and language-driven techniques. These paradigms differ fundamentally in how knowledge is represented, how decisions are generated, and how control is shared between designers and autonomous agents. This section compares these approaches along dimensions that are particularly relevant to game AI and synthesizes the resulting trade-offs.
 
